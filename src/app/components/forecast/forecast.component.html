@@ -1,0 +1,64 @@
+
+<div class="forecast__wrapper" >
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th></th>
+        <th>Temperature</th>
+        <th>Wind</th>
+        <th>Humidity</th>
+        <th>Feels like</th>
+        <th>Pressure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let forecast of forecastData.list">
+        <td>
+          <h6 class="current-time">{{ forecast?.dt! * 1000 | date : 'MMM, d'}}</h6>
+        </td>
+        <td>
+          <h6 class="current-time">{{ forecast?.dt! * 1000 | date : 'h:mm a'}}</h6>
+        </td>
+        <td>
+          <div class="forecast__content__condition">
+            <img class="condition__img" *ngIf="forecast" [src]="'https://openweathermap.org/img/wn/' + forecast?.weather?.at(0)?.icon + '@2x.png'" alt="">
+            <h4 class="condition__desc">{{forecast?.weather?.at(0)?.description}}</h4>
+        
+          </div>
+        </td>
+        <td>
+          <h2 class="forecast__content__temperature">{{(forecast?.main?.temp! > 0 ? '+' + forecast?.main?.temp! : forecast?.main?.temp!)}}</h2>
+        </td>
+        <td>
+          <div class="term__wrapper term__wind-speed__wrapper">
+            <img class="term__icon term__wind-speed__img" src="assets/images/icons/wind.svg" alt="">
+            <h6 class="term__wind-speed">{{forecast?.wind?.speed}}</h6>
+          </div>
+        </td>
+        <td>
+          <div class="term__wrapper term__humidity__wrapper">
+            <img class="term__icon term__humidity__img" src="assets/images/icons/humidity.svg" alt="">
+            <h6 class="term__humidity">{{forecast?.main?.humidity}}</h6>
+          </div>
+        </td>
+        <td>
+          <div class="term__wrapper term__feels-like__wrapper">
+            <img class="term__icon term__feels-like__img" src="assets/images/icons/temperature.svg" alt="">
+            <h6 class="term__feels-like">{{forecast?.main?.feels_like! > 0 ? '+' + forecast?.main?.feels_like! : forecast?.main?.feels_like!}}</h6>
+          </div>
+        </td>
+        <td>
+          <div class="term__wrapper term__pressure__wrapper">
+            <img class="term__icon term__pressure__img" src="assets/images/icons/pressure.svg" alt="">
+            <h6 class="term__pressure">{{forecast?.main?.pressure}}</h6>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  
+</div>

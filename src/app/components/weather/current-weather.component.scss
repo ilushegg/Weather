@@ -1,0 +1,85 @@
+@import '/src/styles.scss';
+
+* {
+  color: #fff;
+}
+
+.weather {
+
+  &__wrapper {
+    border-radius: $border-radius;
+    padding: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 600px;
+  }
+
+  &__header {
+
+  }
+
+  &__content {
+    display: flex;
+
+    align-items: center;
+
+    &__temperature {
+      font-size: 50px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    &__condition {
+      display: flex;
+      align-items: center;
+
+      .condition__desc {
+        color: $light-white;
+
+      }
+    }
+  }
+
+  &__footer {
+
+  }
+
+}
+
+.location {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.condition {
+
+}
+
+.current-time {
+  color: $light-white;
+}
+.term {
+  display: flex;
+
+  &__wrapper {
+    display: flex;
+    margin: 10px;
+  }
+
+  &__icon {
+    height: 20px;
+    filter: $white-filter;
+  }
+  &__wind-speed {
+
+    &__img {
+      
+    }
+  }
+  &__humidity {
+  }
+  &__pressure {
+  }
+
+}

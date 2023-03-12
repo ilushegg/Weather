@@ -1,0 +1,44 @@
+
+<div class="weather__wrapper" [ngStyle]="{'background-image' : 'url(/assets/images/weather.jpg)' }">
+
+  <div class="weather__header">
+    <h4 class="location">{{weatherData?.name}}</h4>
+    <h6 class="current-time">{{ weatherData?.dt! * 1000 | date : 'MMM d, y, h:mm a'}}</h6>
+
+  </div>
+  
+  <div class="weather__content">
+
+    <h2 class="weather__content__temperature">{{(weatherData?.main?.temp! > 0 ? '+' + weatherData?.main?.temp! : weatherData?.main?.temp!)}}</h2>
+    <div class="weather__content__condition">
+      <img class="condition__img" *ngIf="weatherData" [src]="'https://openweathermap.org/img/wn/' + weatherData?.weather?.at(0)?.icon + '@2x.png'" alt="">
+      <h4 class="condition__desc">{{weatherData?.weather?.at(0)?.description}}</h4>
+  
+    </div>
+  </div>
+
+  <div class="weather__footer">
+
+    <div class="term">
+      <div class="term__wrapper term__wind-speed__wrapper">
+        <img class="term__icon term__wind-speed__img" src="assets/images/icons/wind.svg" alt="">
+        <h6 class="term__wind-speed">{{weatherData?.wind?.speed}}</h6>
+      </div>
+      <div class="term__wrapper term__humidity__wrapper">
+        <img class="term__icon term__humidity__img" src="assets/images/icons/humidity.svg" alt="">
+        <h6 class="term__humidity">{{weatherData?.main?.humidity}}</h6>
+      </div>
+  
+      <div class="term__wrapper term__feels-like__wrapper">
+        <img class="term__icon term__feels-like__img" src="assets/images/icons/temperature.svg" alt="">
+        <h6 class="term__feels-like">{{weatherData?.main?.feels_like! > 0 ? '+' + weatherData?.main?.feels_like! : weatherData?.main?.feels_like!}}</h6>
+      </div>
+      <div class="term__wrapper term__pressure__wrapper">
+        <img class="term__icon term__pressure__img" src="assets/images/icons/pressure.svg" alt="">
+        <h6 class="term__pressure">{{weatherData?.main?.pressure}}</h6>
+      </div>
+  
+    </div>
+  </div>
+  
+</div>
