@@ -1,0 +1,15 @@
+
+<div class="wrapper" [ngStyle]="{'background-image' : 'url(/assets/images/weather.jpg)' }">
+
+  <h4 class="location">{{weatherData?.name}}</h4>
+  
+  
+  <h2 class="temperature">{{(weatherData?.main?.temp! > 0 ? '+' + weatherData?.main?.temp! : weatherData?.main?.temp! + '')}}</h2>
+  <h4 class="condition">{{weatherData?.weather?.at(0)?.main}}</h4>
+  
+  <img *ngIf="weatherData" [src]="'https://openweathermap.org/img/wn/' + weatherData?.weather?.at(0)?.icon + '@2x.png'" alt="">
+  
+  <h6 class="wind-speed">{{weatherData?.wind?.speed}}</h6>
+  <h6 class="humidity">{{weatherData?.main?.humidity}}</h6>
+  <h6 class="pressure">{{weatherData?.main?.pressure}}</h6>
+</div>
