@@ -3,14 +3,14 @@
   <table class="forecast__table"  *ngFor="let forecast of forecastDaily || []">
     <thead>
       <tr>
-        <th>{{ forecast?.day! | date : 'MMM, d' }}</th>
+        <th class="forecast__table__date forecast__table__header">{{ forecast?.day! | date : 'MMMM d' }}</th>
         <th></th>
 
-        <th>Temperature</th>
-        <th>Wind</th>
-        <th>Humidity</th>
-        <th>Feels like</th>
-        <th>Pressure</th>
+        <th class="forecast__table__header">Temperature</th>
+        <th class="forecast__table__header">Wind</th>
+        <th class="forecast__table__header">Humidity</th>
+        <th class="forecast__table__header">Feels like</th>
+        <th class="forecast__table__header">Pressure</th>
       </tr>
     </thead>
     <tbody>
@@ -19,38 +19,33 @@
           <h6 class="current-time">{{ forecastHourly?.dt_txt! | date : 'h:mm a'}}</h6>
         </td>
         <td>
-          <div class="forecast__content__condition">
+          <div class="forecast__table__content">
             <img class="condition__img" *ngIf="forecast" [src]="'https://openweathermap.org/img/wn/' + forecastHourly?.icon + '@2x.png'" alt="">
             <h4 class="condition__desc">{{forecastHourly?.description}}</h4>
-        
           </div>
         </td>
         <td>
           <h2 class="forecast__content__temperature">{{ forecastHourly?.temperature }}</h2>
         </td>
         <td>
-          <div class="term__wrapper term__wind-speed__wrapper">
-            <img class="term__icon term__wind-speed__img" src="assets/images/icons/wind.svg" alt="">
             <h6 class="term__wind-speed">{{forecastHourly?.wind}}</h6>
-          </div>
         </td>
         <td>
-          <div class="term__wrapper term__humidity__wrapper">
-            <img class="term__icon term__humidity__img" src="assets/images/icons/humidity.svg" alt="">
+
+
             <h6 class="term__humidity">{{forecastHourly?.humidity}}</h6>
-          </div>
+
         </td>
         <td>
-          <div class="term__wrapper term__feels-like__wrapper">
-            <img class="term__icon term__feels-like__img" src="assets/images/icons/temperature.svg" alt="">
+
+
             <h6 class="term__feels-like">{{forecastHourly?.feelsLike}}</h6>
-          </div>
+
         </td>
         <td>
-          <div class="term__wrapper term__pressure__wrapper">
-            <img class="term__icon term__pressure__img" src="assets/images/icons/pressure.svg" alt="">
+
             <h6 class="term__pressure">{{forecastHourly?.pressure}}</h6>
-          </div>
+
         </td>
       </tr>
     </tbody>

@@ -40,7 +40,12 @@ export class ForecastComponent implements OnInit {
         feelsLike: forecast[i].main.feels_like,
         pressure: forecast[i].main.pressure
       }
-      this.weatherService.formatWeatherProperties(dayForecast.temperature, dayForecast.feelsLike, dayForecast.wind, dayForecast.humidity);
+      let formattedForecastProps = this.weatherService.formatWeatherProperties(dayForecast.temperature, dayForecast.feelsLike, dayForecast.wind, dayForecast.humidity);
+      dayForecast.temperature = formattedForecastProps.temp;
+      dayForecast.feelsLike = formattedForecastProps.feelsLike;
+      dayForecast.wind = formattedForecastProps.windSpeed;
+      dayForecast.humidity = formattedForecastProps.humidity;
+    
       if(date !== lastDate || i+1 === forecast.length){
         let pushForecast = {
           day: forecast[i-1].dt_txt,

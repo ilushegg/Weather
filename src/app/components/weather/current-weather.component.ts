@@ -19,7 +19,11 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit(): void {
     this.weatherService.location$.pipe(switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
       this.weatherData = res;
-      this.weatherService.formatWeatherProperties(this.weatherData.main.temp, this.weatherData.main.feels_like, this.weatherData.wind.speed, this.weatherData.main.humidity);
+      let formattedWeatherProps = this.weatherService.formatWeatherProperties(this.weatherData.main.temp, this.weatherData.main.feels_like, this.weatherData.wind.speed, this.weatherData.main.humidity);
+      this.weatherData.main.temp = formattedWeatherProps.temp;
+      this.weatherData.main.feels_like = formattedWeatherProps.feelsLike;
+      this.weatherData.wind.speed = formattedWeatherProps.windSpeed;
+      this.weatherData.main.humidity = formattedWeatherProps.humidity;
       this.weatherService.coord$.next({
         lat: this.weatherData.coord.lat,
         lon: this.weatherData.coord.lon

@@ -48,6 +48,12 @@ export class WeatherApiService{
     feelsLike = Math.round(feelsLike);
     windSpeed += 'm/s';
     humidity += '%';
+    return {
+      temp,
+      feelsLike,
+      windSpeed,
+      humidity
+    }
   }
 
 }
