@@ -15,8 +15,14 @@
     max-width: 600px;
   }
 
-  &__header {
-
+  &__table {
+    @include box-shadow;
+    border-radius: $border-radius;
+    border-spacing: 15px;
+    margin-bottom: 20px;
+    & th, td {
+      padding: 15px;
+    }
   }
 
   &__content {
@@ -35,7 +41,7 @@
       align-items: center;
 
       .condition__desc {
-        color: $light-white;
+        color: $light-gray;
 
       }
     }
@@ -57,7 +63,7 @@
 }
 
 .current-time {
-  color: $light-white;
+  color: $light-gray;
 }
 .term {
   display: flex;

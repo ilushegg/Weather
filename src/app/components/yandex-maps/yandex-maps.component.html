@@ -1,0 +1,6 @@
+<div class="container">
+
+  <ya-map [center]="[lat, lon]" [zoom]="12" (ready)="onReady($event)">
+    <ya-placemark [geometry]="[lat, lon]"></ya-placemark>
+  </ya-map>
+</div>

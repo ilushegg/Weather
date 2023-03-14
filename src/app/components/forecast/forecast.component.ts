@@ -13,47 +13,48 @@ import { WeatherApiService } from 'src/app/services/weather-api.service';
 export class ForecastComponent implements OnInit {
 
   forecastData: WeatherResponse<Forecast[]>;
-  forecastDaily: ForecastDaily[];
+  forecastDaily: ForecastDaily[] = [];
 
   constructor(private weatherService: WeatherApiService) { }
 
   ngOnInit(): void {
     this.weatherService.location$.pipe(switchMap(value => this.weatherService.getForecastData())).subscribe(res => {
       this.forecastData = res;
-      console.log(this.forecastData);
+      this.formatForecastDaily(this.forecastData.list)
     })
   }
 
-  // formatForecastDaily(forecast: Forecast[]) {
-  //   console.log(forecast)
-  //   let lastDate = new Date(forecast[0].dt_txt).getDate();
-  //   for(let i = 0; i < forecast.length; i++) {
-  //     let date = new Date(forecast[i].dt_txt).getDate();
-  //     let daysForecast: { dt: number; temperature: number; wind: string; humidity: string; feelsLike: number; pressure: number; }[] = [];
-  //     if(date === lastDate){
-  //       const dayForecast = {
-  //         dt: forecast[i].dt,
-  //         temperature: forecast[i].main.temp,
-  //         wind: forecast[i].wind.speed,
-  //         humidity: forecast[i].main.humidity,
-  //         feelsLike: forecast[i].main.feels_like,
-  //         pressure: forecast[i].main.pressure
-  //       }
-  //       daysForecast.push(dayForecast);
-  //       console.log(daysForecast)
-
-  //     }
-  //     else{
-  //       let pushForecast = {
-  //         day: forecast[i].dt,
-  //         main: daysForecast
-  //       }
-  //       console.log(pushForecast)
-  //       lastDate = new Date(forecast[i].dt_txt).getDate();
-  //     }
-  //   }
+  formatForecastDaily(forecast: Forecast[]) {
+    this.forecastDaily = [];
+    let lastDate = new Date(forecast[0].dt_txt).getDate();
+    let daysForecast: { dt_txt: string; description: string; icon: string; temperature: number; wind: string; humidity: string; feelsLike: number; pressure: number; }[] = [];
+    for(let i = 0; i < forecast.length; i++) {
+      let date = new Date(forecast[i].dt_txt).getDate();
+      const dayForecast = {
+        dt_txt: forecast[i].dt_txt,
+        description: forecast[i].weather[0].description,
+        icon: forecast[i].weather[0].icon,
+        temperature: forecast[i].main.temp,
+        wind: forecast[i].wind.speed,
+        humidity: forecast[i].main.humidity,
+        feelsLike: forecast[i].main.feels_like,
+        pressure: forecast[i].main.pressure
+      }
+      this.weatherService.formatWeatherProperties(dayForecast.temperature, dayForecast.feelsLike, dayForecast.wind, dayForecast.humidity);
+      if(date !== lastDate || i+1 === forecast.length){
+        let pushForecast = {
+          day: forecast[i-1].dt_txt,
+          main: daysForecast
+        }
+        this.forecastDaily.push(pushForecast);
+        lastDate = new Date(forecast[i].dt_txt).getDate();
+        daysForecast = [];
+      }
+      daysForecast.push(dayForecast);
+    }
     
   }
+}
 
 
 

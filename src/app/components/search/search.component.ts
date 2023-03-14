@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { WeatherApiService } from 'src/app/services/weather-api.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -11,6 +13,9 @@ export class SearchComponent implements OnInit {
 
 
   searchValue: string;
+
+
+
 
   constructor(private weatherService: WeatherApiService) { }
 
@@ -24,4 +29,6 @@ export class SearchComponent implements OnInit {
     }
     return;
   }
+
+
 }
