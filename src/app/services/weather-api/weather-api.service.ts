@@ -2,9 +2,9 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { WeatherResponse } from '../models/response';
-import { CurrentWeatherResponse } from '../models/current-weather-response';
-import { Forecast } from '../models/forecast';
+import { WeatherResponse } from '../../models/response';
+import { CurrentWeatherResponse } from '../../models/current-weather-response';
+import { Forecast } from '../../models/forecast';
 
 @Injectable({
   providedIn: 'root'
