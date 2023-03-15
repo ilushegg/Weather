@@ -1,6 +1,9 @@
 @import '/src/styles.scss';
 
-.container {
-  width: 500px;
-  height: 200px;
+.map__wrapper {
+  width: 600px;
+  height: 300px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: $border-radius;
 }

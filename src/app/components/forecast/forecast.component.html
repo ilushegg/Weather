@@ -3,9 +3,7 @@
   <table class="forecast__table"  *ngFor="let forecast of forecastDaily || []">
     <thead>
       <tr>
-        <th class="forecast__table__date forecast__table__header">{{ forecast?.day! | date : 'MMMM d' }}</th>
-        <th></th>
-
+        <th colspan="2" class="forecast__table__date forecast__table__header">{{ forecast?.day! | date : 'MMMM d' }}</th>
         <th class="forecast__table__header">Temperature</th>
         <th class="forecast__table__header">Wind</th>
         <th class="forecast__table__header">Humidity</th>
@@ -18,7 +16,7 @@
         <td>
           <h6 class="current-time">{{ forecastHourly?.dt_txt! | date : 'h:mm a'}}</h6>
         </td>
-        <td>
+        <td class="forecast__table__img">
           <div class="forecast__table__content">
             <img class="condition__img" *ngIf="forecast" [src]="'https://openweathermap.org/img/wn/' + forecastHourly?.icon + '@2x.png'" alt="">
             <h4 class="condition__desc">{{forecastHourly?.description}}</h4>

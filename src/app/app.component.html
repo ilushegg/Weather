@@ -1,13 +1,25 @@
-
 <header>
-  <app-search></app-search>
-
+  <div class="container">
+    <nav class="nav">
+      <ul>
+        <ul>
+          <li class="nav__item logo"><a href="">Weather</a></li>
+          <li class="nav__item"><a routerLink="/">Today</a></li>
+          <li class="nav__item"><a routerLink="/forecast">5 day forecast</a></li>
+        </ul>
+        <li class="nav__item">
+          <app-search></app-search>
+        </li>
+        <li class="nav__item"></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 <main>
-  <app-current-weather></app-current-weather>
-  <app-yandex-maps [lat]="coord.lat" [lon]="coord.lon">656565</app-yandex-maps>
-  <app-forecast></app-forecast>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </main>
 <footer>
-
+  <div class="container"></div>
 </footer>

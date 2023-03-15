@@ -22,8 +22,8 @@ export interface CurrentWeatherResponse  {
   sys: {
     id: string,
     country: string,
-    sunrise: string,
-    sunset: string,
+    sunrise: number,
+    sunset: number,
   },
   timezone: string,
   id: string,

@@ -11,4 +11,6 @@ export interface Forecast {
   visibility: number,
   weather: Weather[],
   wind: WeatherWind,
+  sunrise: string,
+  sunset: string
 }

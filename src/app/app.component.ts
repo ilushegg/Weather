@@ -9,20 +9,13 @@ import { WeatherApiService } from './services/weather-api.service';
 export class AppComponent implements OnInit{
   
 
-  coord = {
-    lat: 0,
-    lon: 0
-  }
 
-  constructor(private weatherService: WeatherApiService) {
+  constructor() {
 
   }
   
   ngOnInit(): void {
-    this.weatherService.coord$.subscribe(value => {
-      this.coord.lat = value.lat;
-      this.coord.lon = value.lon;
-    });
+
   }
   title = 'Weather';
 }

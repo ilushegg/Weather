@@ -13,6 +13,10 @@ import { switchMap, Observable, Subscription } from 'rxjs';
 export class CurrentWeatherComponent implements OnInit {
 
   weatherData: CurrentWeatherResponse | null;
+  coord = {
+    lat: 0,
+    lon: 0
+  }
 
   constructor(private weatherService: WeatherApiService) { }
 
@@ -28,7 +32,11 @@ export class CurrentWeatherComponent implements OnInit {
         lat: this.weatherData.coord.lat,
         lon: this.weatherData.coord.lon
       })
-    }, error => console.log(error))
+    }, error => console.log(error));
+    this.weatherService.coord$.subscribe(value => {
+      this.coord.lat = value.lat;
+      this.coord.lon = value.lon;
+    });
   }
 
   getWeather() {

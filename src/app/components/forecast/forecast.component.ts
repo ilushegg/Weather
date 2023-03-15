@@ -38,7 +38,7 @@ export class ForecastComponent implements OnInit {
         wind: forecast[i].wind.speed,
         humidity: forecast[i].main.humidity,
         feelsLike: forecast[i].main.feels_like,
-        pressure: forecast[i].main.pressure
+        pressure: forecast[i].main.pressure,
       }
       let formattedForecastProps = this.weatherService.formatWeatherProperties(dayForecast.temperature, dayForecast.feelsLike, dayForecast.wind, dayForecast.humidity);
       dayForecast.temperature = formattedForecastProps.temp;

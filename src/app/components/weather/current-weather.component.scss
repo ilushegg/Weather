@@ -5,27 +5,39 @@
 }
 
 .weather {
-
+  
   &__wrapper {
     border-radius: $border-radius;
-    padding: 15px;
-    background-position: center;
+    background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 600px;
+    height: 90vh;
+    width: 90vw;
+    margin: 0 auto;
+    padding: 30px;
+    font-size: 18px;
+    &:not(.weather__content) {
+      display: flex;
+    flex-direction: column;
+
+    }
   }
 
   &__header {
 
+    &__location {
+      margin-bottom: 10px;
+      font-size: 20px;
+  text-transform: uppercase;
+    }
+
   }
 
   &__content {
-    display: flex;
-
-    align-items: center;
+    
 
     &__temperature {
-      font-size: 50px;
+      font-size: 70px;
       text-transform: uppercase;
       font-weight: 600;
     }
@@ -33,53 +45,38 @@
     &__condition {
       display: flex;
       align-items: center;
+    }
 
-      .condition__desc {
-        color: $light-white;
-
-      }
+    .condition__wrapper {
+      display: flex;
+      align-items: center;
     }
   }
 
-  &__footer {
-
+  &__map {
+    margin-top: 30px;
   }
 
-}
-
-.location {
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.condition {
 
 }
+
 
 .current-time {
-  color: $light-white;
+  color: $dark-white;
 }
 .term {
   display: flex;
 
   &__wrapper {
     display: flex;
+    align-items: center;
     margin: 10px;
   }
 
   &__icon {
-    height: 20px;
+    height: 30px;
     filter: $white-filter;
-  }
-  &__wind-speed {
-
-    &__img {
-      
-    }
-  }
-  &__humidity {
-  }
-  &__pressure {
+    margin-right: 5px;
   }
 
 }

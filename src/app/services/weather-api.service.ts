@@ -46,8 +46,8 @@ export class WeatherApiService{
   formatWeatherProperties(temp: number, feelsLike: number, windSpeed: string, humidity: string) {
     temp = Math.round(temp);
     feelsLike = Math.round(feelsLike);
-    windSpeed += 'm/s';
-    humidity += '%';
+    windSpeed += ' m/s';
+    humidity += ' %';
     return {
       temp,
       feelsLike,

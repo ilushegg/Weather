@@ -8,6 +8,7 @@ export interface ForecastDaily {
     wind: string,
     humidity: string,
     feelsLike: number,
-    pressure: number
+    pressure: number,
+
   }[]
 }

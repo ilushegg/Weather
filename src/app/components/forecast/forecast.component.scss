@@ -20,15 +20,29 @@
     border-radius: $border-radius;
     border-spacing: 15px;
     margin-bottom: 20px;
+    font-size: 14px;
+
+    & thead {
+      border-bottom: 1px solid $dark-white;
+    }
+
     & th, td {
       padding: 15px;
       text-align: center;
+      white-space: nowrap;
+
+    }
+
+    & th {
+      padding-right: 20px;
+      padding-left: 20px;
+
     }
 
 
 
     & td {
-      vertical-align: top;
+      vertical-align: middle;
     }
 
     &__header {
@@ -37,10 +51,16 @@
     }
 
     &__date {
-      color: #c90000;
+      color: $red;
       font-size: 20px;
       font-weight: 600;
+      text-transform: uppercase;
     }
+
+    &__img {
+      padding: 0 !important;
+    }
+
     &__content {
       display: flex;
       align-items: center;
@@ -50,8 +70,7 @@
         text-transform: uppercase;
         font-weight: 600;
       }
-  
-  
+
         .condition__desc {
           color: $light-gray;
         }
@@ -64,10 +83,6 @@
   }
 
 
-  &__footer {
-
-  }
-
 }
 
 .location {
@@ -75,34 +90,6 @@
   text-transform: uppercase;
 }
 
-.condition {
-
-}
-
 .current-time {
   color: $light-gray;
-}
-.term {
-  display: flex;
-
-  &__wrapper {
-    display: flex;
-    margin: 10px;
-  }
-
-  &__icon {
-    height: 20px;
-    filter: $white-filter;
-  }
-  &__wind-speed {
-
-    &__img {
-      
-    }
-  }
-  &__humidity {
-  }
-  &__pressure {
-  }
-
 }
