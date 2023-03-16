@@ -5,8 +5,8 @@ import { WeatherWind } from "./weather-wind";
 
 export interface CurrentWeatherResponse  {
   coord: { 
-    lon: string,
-    lat: string,
+    lon: number,
+    lat: number,
   },
   weather: Weather[],
   main: WeatherMain,

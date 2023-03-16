@@ -7,14 +7,26 @@
           <li class="nav__item nav__item__hover"><a routerLink="/">Today</a></li>
           <li class="nav__item nav__item__hover"><a routerLink="/forecast">5 day forecast</a></li>
         </ul>
-        <li class="nav__item">
-          <app-search></app-search>
-        </li>
-        <li class="nav__item">
-          <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [filter]="true" [style]="{'padding' : '0'}" >
-            
-          </p-dropdown>
-        </li>
+        <ul>
+          <li class="nav__item">
+            <app-search></app-search>
+          </li>
+          <li class="nav__item">
+            <span class="pi pi-heart" (click)="addToFavorite()"></span>
+          </li>
+        </ul>
+        <ul>
+          <li class="nav__item" (click)="useLocation()">
+           <span title="Use your location">
+             <img class="nav__item__gps" src="assets/images/icons/gps.svg" alt="">
+
+           </span>
+          </li> 
+          <li class="nav__item">
+            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [filter]="true" [style]="{'padding' : '0'}" >
+            </p-dropdown>
+          </li>
+        </ul>
       </ul>
     </nav>
   </div>

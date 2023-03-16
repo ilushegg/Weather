@@ -3,7 +3,8 @@ import { CurrentWeatherResponse } from 'src/app/models/current-weather-response'
 import { Forecast } from 'src/app/models/forecast';
 import { WeatherResponse } from 'src/app/models/response';
 import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
-import { switchMap, Observable, Subscription } from 'rxjs';
+import { switchMap, Observable, Subscription, debounceTime } from 'rxjs';
+import { Coords } from 'src/app/models/coord';
 
 @Component({
   selector: 'app-current-weather',
@@ -13,7 +14,7 @@ import { switchMap, Observable, Subscription } from 'rxjs';
 export class CurrentWeatherComponent implements OnInit {
 
   weatherData: CurrentWeatherResponse | null;
-  coord = {
+  coord: Coords = {
     lat: 0,
     lon: 0
   }
@@ -21,7 +22,8 @@ export class CurrentWeatherComponent implements OnInit {
   constructor(private weatherService: WeatherApiService) { }
 
   ngOnInit(): void {
-    this.weatherService.location$.pipe(switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
+    this.weatherService.location$.pipe(debounceTime(100) ,switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
+      console.log('fsdfsdfdf')
       this.weatherData = res;
       let formattedWeatherProps = this.weatherService.formatWeatherProperties(this.weatherData.main.temp, this.weatherData.main.feels_like, this.weatherData.wind.speed, this.weatherData.main.humidity);
       this.weatherData.main.temp = formattedWeatherProps.temp;

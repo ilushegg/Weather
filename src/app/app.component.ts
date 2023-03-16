@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { Coords } from './models/coord';
+import { SpinnerService } from './services/spinner/spinner.service';
+import { StorageService } from './services/storage/storage.service';
 import { WeatherApiService } from './services/weather-api/weather-api.service';
 
 @Component({
@@ -10,21 +14,30 @@ export class AppComponent implements OnInit{
   
   selectedCity: string;
   cities: {
-    name: string
+    city: string,
+    coord: Coords
   }[];
 
-  constructor() {
+  constructor(private weatherService: WeatherApiService, private loadingService: SpinnerService, private storageService: StorageService) {
 
   }
   
   ngOnInit(): void {
-    this.cities = [
-      {name: 'New York'},
-      {name: 'Rome'},
-      {name: 'London',},
-      {name: 'Istanbul',},
-      {name: 'Paris',}
-  ];
+    this.cities = this.storageService.getAllNameLocation();
+    console.log(this.cities)
+  this.weatherService.getCoordsByNavigator();
   }
   title = 'Weather';
+
+  useLocation() {
+    this.weatherService.getCoordsByNavigator();
+    this.weatherService.useCoord$.next(true);
+    this.weatherService.location$.next('');
+    this.loadingService.isLoading$.next(true);
+  }
+
+  addToFavorite() {
+    this.storageService.addToFavorite(this.weatherService.coord$.getValue(), this.weatherService.location$.getValue());
+  }
+
 }

@@ -15,6 +15,7 @@ import { SearchComponent } from './components/search/search.component';
 import { InputTextModule } from 'primeng/inputtext';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DropdownModule} from 'primeng/dropdown';
+import {PrimeIcons} from 'primeng/api';
 
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { YandexMapsComponent } from './components/yandex-maps/yandex-maps.component';
@@ -40,7 +41,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AngularYandexMapsModule,
     ProgressSpinnerModule,
     DropdownModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs';
 import { Forecast } from 'src/app/models/forecast';
 import { ForecastDaily } from 'src/app/models/forecast-daily';
 import { WeatherResponse } from 'src/app/models/response';
@@ -19,9 +19,8 @@ export class ForecastComponent implements OnInit{
   constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService) { }
 
   ngOnInit(): void {
-    
     this.loadingService.isLoading$.next(true);
-    this.weatherService.location$.pipe(switchMap(value => this.weatherService.getForecastData())).subscribe(res => {
+    this.weatherService.location$.pipe(debounceTime(100), switchMap(value => this.weatherService.getForecastData())).subscribe(res => {
       this.forecastData = null;
       this.forecastData = res;
       this.formatForecastDaily(this.forecastData.list);

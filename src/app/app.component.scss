@@ -20,6 +20,16 @@ header {
       align-items: center;
       transition: all .2s;
 
+      &__gps {
+        height: 30px;
+        transition: all .2s;
+        margin-right: 5px;
+        &:hover {
+          cursor: pointer;
+          scale: 1.1;
+        }
+      }
+
       &__hover {
 
         & a {

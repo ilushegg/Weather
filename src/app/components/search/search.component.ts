@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   search($event: any) {
     if ($event.key === 'Enter') {
     this.loadingService.isLoading$.next(true);
-
+      this.weatherService.useCoord$.next(false);
       this.weatherService.location$.next(this.searchValue);
     }
     return;
