@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrentWeatherResponse } from 'src/app/models/current-weather-response';
 import { Forecast } from 'src/app/models/forecast';
 import { WeatherResponse } from 'src/app/models/response';
-import { WeatherApiService } from 'src/app/services/weather-api.service';
+import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
 import { switchMap, Observable, Subscription } from 'rxjs';
 
 @Component({

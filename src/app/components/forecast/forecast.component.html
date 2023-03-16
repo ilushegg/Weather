@@ -1,5 +1,7 @@
 
 <div class="forecast__wrapper" >
+  <app-spinner *ngIf="loadingService.isLoading$ | async"></app-spinner>
+
   <table class="forecast__table"  *ngFor="let forecast of forecastDaily || []">
     <thead>
       <tr>

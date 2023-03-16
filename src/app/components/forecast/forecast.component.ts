@@ -3,26 +3,35 @@ import { switchMap } from 'rxjs';
 import { Forecast } from 'src/app/models/forecast';
 import { ForecastDaily } from 'src/app/models/forecast-daily';
 import { WeatherResponse } from 'src/app/models/response';
-import { WeatherApiService } from 'src/app/services/weather-api.service';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
+import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
 
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
   styleUrls: ['./forecast.component.scss']
 })
-export class ForecastComponent implements OnInit {
+export class ForecastComponent implements OnInit{
 
-  forecastData: WeatherResponse<Forecast[]>;
+  forecastData: WeatherResponse<Forecast[]> | null;
   forecastDaily: ForecastDaily[] = [];
 
-  constructor(private weatherService: WeatherApiService) { }
+  constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService) { }
 
   ngOnInit(): void {
+    
+    this.loadingService.isLoading$.next(true);
     this.weatherService.location$.pipe(switchMap(value => this.weatherService.getForecastData())).subscribe(res => {
+      this.forecastData = null;
       this.forecastData = res;
-      this.formatForecastDaily(this.forecastData.list)
+      this.formatForecastDaily(this.forecastData.list);
+      this.loadingService.isLoading$.next(false);
     })
   }
+
+
+
+
 
   formatForecastDaily(forecast: Forecast[]) {
     this.forecastDaily = [];

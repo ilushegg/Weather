@@ -4,6 +4,7 @@
   color: #000;
 }
 
+
 .forecast {
 
   &__wrapper {
@@ -12,7 +13,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
   }
 
   &__table {
@@ -21,6 +23,7 @@
     border-spacing: 15px;
     margin-bottom: 20px;
     font-size: 14px;
+    min-width: 1000px;
 
     & thead {
       border-bottom: 1px solid $dark-white;

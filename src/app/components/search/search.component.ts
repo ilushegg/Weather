@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 
-import { WeatherApiService } from 'src/app/services/weather-api.service';
+import { WeatherApiService } from 'src/app/services/weather-api/weather-api.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -17,15 +18,16 @@ export class SearchComponent implements OnInit {
 
 
 
-  constructor(private weatherService: WeatherApiService) { }
+  constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService) { }
 
   ngOnInit(): void {
   }
 
   search($event: any) {
-    if($event.key === 'Enter'){
+    if ($event.key === 'Enter') {
+    this.loadingService.isLoading$.next(true);
+
       this.weatherService.location$.next(this.searchValue);
-      console.log(this.searchValue)
     }
     return;
   }

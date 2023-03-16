@@ -14,32 +14,52 @@ header {
     }
 
     &__item {
-      padding: 0 10px;
       height: 50px;
-     
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transition: all .2s;
 
-      & a {
-        text-decoration: none;
-        color: #000;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      &:hover {
-        background-color: $dark-white;
-        cursor: pointer;
+      &__hover {
 
         & a {
-          color: $red;
-        }
+          text-decoration: none;
+          color: #000;
+          height: 50px;
+      padding: 0 10px;
 
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+  
+        &:hover {
+          background-color: $dark-white;
+          cursor: pointer;
+  
+          & a {
+            color: $red;
+          }
+  
+        }
       }
     }
 
   }
 
 
+}
+
+p-dropdown {
+  & div span {
+    height: 20px;
+  }
+}
+
+:host {
+  ::ng-deep .p-dropdown-label, .p-inputtext, .p-placeholder, .ng-star-inserted {
+
+    padding: 6px;
+
+  }
 }

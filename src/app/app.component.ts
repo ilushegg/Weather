@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherApiService } from './services/weather-api.service';
+import { WeatherApiService } from './services/weather-api/weather-api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,23 @@ import { WeatherApiService } from './services/weather-api.service';
 })
 export class AppComponent implements OnInit{
   
-
+  selectedCity: string;
+  cities: {
+    name: string
+  }[];
 
   constructor() {
 
   }
   
   ngOnInit(): void {
-
+    this.cities = [
+      {name: 'New York'},
+      {name: 'Rome'},
+      {name: 'London',},
+      {name: 'Istanbul',},
+      {name: 'Paris',}
+  ];
   }
   title = 'Weather';
 }

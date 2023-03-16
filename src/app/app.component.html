@@ -4,13 +4,17 @@
       <ul>
         <ul>
           <li class="nav__item logo"><a href="">Weather</a></li>
-          <li class="nav__item"><a routerLink="/">Today</a></li>
-          <li class="nav__item"><a routerLink="/forecast">5 day forecast</a></li>
+          <li class="nav__item nav__item__hover"><a routerLink="/">Today</a></li>
+          <li class="nav__item nav__item__hover"><a routerLink="/forecast">5 day forecast</a></li>
         </ul>
         <li class="nav__item">
           <app-search></app-search>
         </li>
-        <li class="nav__item"></li>
+        <li class="nav__item">
+          <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [filter]="true" [style]="{'padding' : '0'}" >
+            
+          </p-dropdown>
+        </li>
       </ul>
     </nav>
   </div>
