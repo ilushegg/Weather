@@ -17,11 +17,11 @@
     margin: 0 auto;
     padding: 30px;
     font-size: 18px;
-    &:not(.weather__content) {
-      display: flex;
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
-    }
+    
   }
 
   &__header {
@@ -67,7 +67,8 @@
 }
 .term {
   display: flex;
-
+  flex-wrap: wrap;
+  font-size: 15px;
   &__wrapper {
     display: flex;
     align-items: center;

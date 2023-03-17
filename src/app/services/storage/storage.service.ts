@@ -16,13 +16,17 @@ export class StorageService {
 
   addToFavorite(coord: Coords, city: string): boolean {
     if(this.getAllNameLocation().filter(loc => loc.city === city).length === 0){
-      let id = guid();
-      localStorage.setItem(`${this.#keyWord} ${id}`, JSON.stringify({...coord, city}));
+      // let id = guid();
+      localStorage.setItem(`${this.#keyWord} ${city}`, JSON.stringify({...coord, city}));
       return true;
     }
     return false;
   }
 
+  deleteFromFavorite(city: string){
+    console.log(city)
+    localStorage.removeItem(`${this.#keyWord} ${city}`);
+  }
 
   getAllNameLocation(): {coord: Coords, city: string}[] {
     var values = [],

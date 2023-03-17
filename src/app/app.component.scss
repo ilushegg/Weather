@@ -23,7 +23,7 @@ header {
       &__gps {
         height: 30px;
         transition: all .2s;
-        margin-right: 5px;
+        margin-left: 10px;
         &:hover {
           cursor: pointer;
           scale: 1.1;
@@ -60,16 +60,27 @@ header {
 
 }
 
-p-dropdown {
-  & div span {
-    height: 20px;
-  }
-}
 
 :host {
-  ::ng-deep .p-dropdown-label, .p-inputtext, .p-placeholder, .ng-star-inserted {
-
+  ::ng-deep .p-dropdown-label, .p-inputtext, .p-placeholder {
+    width: 125px;
     padding: 6px;
 
   }
+}
+
+.pi {
+  color: $red;
+  font-size: 20px;
+  transition: all .2s;
+  margin-left: 10px;
+  &:hover {
+    cursor: pointer;
+    scale: 1.1;
+  }
+}
+
+.logo {
+  max-height: 30px;
+  margin-right: 10px;
 }

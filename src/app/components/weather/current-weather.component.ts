@@ -45,8 +45,5 @@ export class CurrentWeatherComponent implements OnInit {
     });
   }
 
-  getWeather() {
-    
-  }
 
 }

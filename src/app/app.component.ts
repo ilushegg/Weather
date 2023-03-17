@@ -21,6 +21,7 @@ export class AppComponent implements OnInit{
     coord: Coords
 
   }[];
+  existsInFav: boolean = false;
 
   constructor(private weatherService: WeatherApiService, private loadingService: SpinnerService, private storageService: StorageService) {
 
@@ -28,7 +29,15 @@ export class AppComponent implements OnInit{
   
   ngOnInit(): void {
     this.cities = this.storageService.getAllNameLocation();
-  this.weatherService.getCoordsByNavigator();
+    this.weatherService.getCoordsByNavigator();
+    this.weatherService.currentCity$.subscribe(currentCity => {
+      if (this.cities.filter(city => city.city === currentCity.location).length === 0){
+        this.existsInFav = false;
+      }
+      else{
+        this.existsInFav = true;
+      }
+    })
   }
   title = 'Weather';
 
@@ -44,8 +53,17 @@ export class AppComponent implements OnInit{
     let coord = this.weatherService.currentCity$.getValue().coord;
     if(this.storageService.addToFavorite(coord, currentCity)){
       this.cities.push({coord: coord, city: currentCity});
-      console.log(this.cities)
+      this.existsInFav = true;
+
     }
+  }
+
+  deleteFromFavorite() {
+    let currentCity = this.weatherService.currentCity$.getValue().location;
+    this.storageService.deleteFromFavorite(currentCity);
+    this.cities = this.cities.filter(city => city.city !== currentCity);
+    this.existsInFav = false;
+
   }
 
   selectCity() {
