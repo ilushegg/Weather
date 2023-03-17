@@ -23,7 +23,8 @@
            </span>
           </li> 
           <li class="nav__item">
-            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [filter]="true" [style]="{'padding' : '0'}" >
+            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" (onChange)="selectCity()" placeholder="Select a City" optionLabel="city" [filter]="true" >
+
             </p-dropdown>
           </li>
         </ul>

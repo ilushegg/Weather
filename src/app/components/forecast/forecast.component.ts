@@ -25,6 +25,10 @@ export class ForecastComponent implements OnInit{
       this.forecastData = res;
       this.formatForecastDaily(this.forecastData.list);
       this.loadingService.isLoading$.next(false);
+      this.weatherService.currentCity$.next({
+        location: this.forecastData.city.name,
+        coord: [this.forecastData.city.lat, this.forecastData.city.lon]
+      })
     })
   }
 

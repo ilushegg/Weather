@@ -33,6 +33,10 @@ export class CurrentWeatherComponent implements OnInit {
       this.weatherService.coord$.next({
         lat: this.weatherData.coord.lat,
         lon: this.weatherData.coord.lon
+      });
+      this.weatherService.currentCity$.next({
+        location: this.weatherData.name,
+        coord: this.weatherData.coord
       })
     }, error => console.log(error));
     this.weatherService.coord$.subscribe(value => {

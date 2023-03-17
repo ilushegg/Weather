@@ -14,9 +14,13 @@ export class StorageService {
 
 
 
-  addToFavorite(coord: Coords, city: string) {
-    let id = guid();
-    localStorage.setItem(`${this.#keyWord} ${id}`, JSON.stringify({...coord, city}));
+  addToFavorite(coord: Coords, city: string): boolean {
+    if(this.getAllNameLocation().filter(loc => loc.city === city).length === 0){
+      let id = guid();
+      localStorage.setItem(`${this.#keyWord} ${id}`, JSON.stringify({...coord, city}));
+      return true;
+    }
+    return false;
   }
 
 

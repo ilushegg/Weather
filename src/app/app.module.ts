@@ -15,6 +15,7 @@ import { SearchComponent } from './components/search/search.component';
 import { InputTextModule } from 'primeng/inputtext';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DropdownModule} from 'primeng/dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
 import {PrimeIcons} from 'primeng/api';
 
 import { ForecastComponent } from './components/forecast/forecast.component';
@@ -42,6 +43,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ProgressSpinnerModule,
     DropdownModule,
     BrowserAnimationsModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

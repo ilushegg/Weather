@@ -12,10 +12,14 @@ import { WeatherApiService } from './services/weather-api/weather-api.service';
 })
 export class AppComponent implements OnInit{
   
-  selectedCity: string;
+  selectedCity: {
+    city: string,
+    coord: Coords
+  };
   cities: {
     city: string,
     coord: Coords
+
   }[];
 
   constructor(private weatherService: WeatherApiService, private loadingService: SpinnerService, private storageService: StorageService) {
@@ -24,7 +28,6 @@ export class AppComponent implements OnInit{
   
   ngOnInit(): void {
     this.cities = this.storageService.getAllNameLocation();
-    console.log(this.cities)
   this.weatherService.getCoordsByNavigator();
   }
   title = 'Weather';
@@ -37,7 +40,17 @@ export class AppComponent implements OnInit{
   }
 
   addToFavorite() {
-    this.storageService.addToFavorite(this.weatherService.coord$.getValue(), this.weatherService.location$.getValue());
+    let currentCity = this.weatherService.currentCity$.getValue().location;
+    let coord = this.weatherService.currentCity$.getValue().coord;
+    if(this.storageService.addToFavorite(coord, currentCity)){
+      this.cities.push({coord: coord, city: currentCity});
+      console.log(this.cities)
+    }
+  }
+
+  selectCity() {
+    this.weatherService.location$.next(this.selectedCity.city);
+    this.loadingService.isLoading$.next(true);
   }
 
 }

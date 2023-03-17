@@ -12,13 +12,16 @@ import { Coords } from 'src/app/models/coord';
 })
 export class WeatherApiService {
 
-  location$: BehaviorSubject<any> = new BehaviorSubject<any>('Moscow');
+  location$: BehaviorSubject<string> = new BehaviorSubject<string>('Moscow');
   coord$: BehaviorSubject<Coords> = new BehaviorSubject<Coords>({
     lat: 44.58883,
     lon: 33.5224,
   });
   useCoord$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  currentCity$: BehaviorSubject<any> = new BehaviorSubject<any>({
+    location: this.location$.getValue(),
+    coord: this.coord$.getValue()
+  });
 
   constructor(private http: HttpClient) {
     
