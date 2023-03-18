@@ -17,16 +17,17 @@ export class WeatherApiService {
     lat: 44.58883,
     lon: 33.5224,
   });
+
   useCoord$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   currentCity$: BehaviorSubject<any> = new BehaviorSubject<any>({
     location: this.location$.getValue(),
     coord: this.coord$.getValue()
   });
 
   constructor(private http: HttpClient) {
-    
-  }
 
+  }
 
   getCoordsByNavigator() {
     if (navigator.geolocation) {
@@ -35,42 +36,26 @@ export class WeatherApiService {
           lat: position.coords.latitude,
           lon: position.coords.longitude
         })
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
       })
     }
   }
 
-
   getCurrentWeatherData(): Observable<CurrentWeatherResponse> {
-    try {
-      if (this.useCoord$.getValue()) {
-        return this.http.get<CurrentWeatherResponse>(`${environment.weather_api_url}weather?lat=${this.coord$.getValue().lat}&lon=${this.coord$.getValue().lon}&cnt=1&units=metric&appid=${environment.weather_api_key}`);
+    if (this.useCoord$.getValue()) {
+      return this.http.get<CurrentWeatherResponse>(`${environment.weather_api_url}weather?lat=${this.coord$.getValue().lat}&lon=${this.coord$.getValue().lon}&cnt=1&units=metric&appid=${environment.weather_api_key}`);
 
-      }
-      else {
-        return this.http.get<CurrentWeatherResponse>(`${environment.weather_api_url}weather?q=${this.location$.getValue()}&cnt=1&units=metric&appid=${environment.weather_api_key}`);
-      }
     }
-    catch (er) {
-      console.log(er)
-      return of()
+    else {
+      return this.http.get<CurrentWeatherResponse>(`${environment.weather_api_url}weather?q=${this.location$.getValue()}&cnt=1&units=metric&appid=${environment.weather_api_key}`);
     }
   }
 
   getForecastData(): Observable<WeatherResponse<Forecast[]>> {
-
-    try {
-      if (this.useCoord$.getValue()) {
-        return this.http.get<WeatherResponse<Forecast[]>>(`${environment.weather_api_url}forecast?lat=${this.coord$.getValue().lat}&lon=${this.coord$.getValue().lon}&units=metric&appid=${environment.weather_api_key}`);
-      }
-      else {
-        return this.http.get<WeatherResponse<Forecast[]>>(`${environment.weather_api_url}forecast?q=${this.location$.getValue()}&units=metric&appid=${environment.weather_api_key}`);
-      }
+    if (this.useCoord$.getValue()) {
+      return this.http.get<WeatherResponse<Forecast[]>>(`${environment.weather_api_url}forecast?lat=${this.coord$.getValue().lat}&lon=${this.coord$.getValue().lon}&units=metric&appid=${environment.weather_api_key}`);
     }
-    catch (er) {
-      console.log(er)
-      return of()
+    else {
+      return this.http.get<WeatherResponse<Forecast[]>>(`${environment.weather_api_url}forecast?q=${this.location$.getValue()}&units=metric&appid=${environment.weather_api_key}`);
     }
   }
 
@@ -88,6 +73,5 @@ export class WeatherApiService {
       humidity
     }
   }
-
 }
 

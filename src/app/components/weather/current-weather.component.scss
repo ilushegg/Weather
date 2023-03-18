@@ -4,24 +4,18 @@
   color: #fff;
 }
 
+
+
 .weather {
   
   &__wrapper {
-    border-radius: $border-radius;
-    background-position: left;
+    background-position: center;
     background-repeat: no-repeat;
-
     background-size: cover;
-    height: 90vh;
-
+    min-height: 100vh;
     margin: 0 auto;
     padding: 30px;
     font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    
   }
 
   &__header {
@@ -31,11 +25,9 @@
       font-size: 20px;
   text-transform: uppercase;
     }
-
   }
 
   &__content {
-    
 
     &__temperature {
       font-size: 70px;
@@ -58,21 +50,21 @@
     margin-top: 30px;
   }
 
-
 }
-
 
 .current-time {
   color: $dark-white;
 }
+
 .term {
   display: flex;
   flex-wrap: wrap;
   font-size: 15px;
+
   &__wrapper {
     display: flex;
     align-items: center;
-    margin: 10px;
+    margin-right: 10px;
   }
 
   &__icon {
@@ -82,3 +74,23 @@
   }
 
 }
+
+@media(max-width: 500px) {
+  .weather {
+  
+    &__wrapper{
+      padding: 15px;
+      padding-top: 30px;
+      align-items: center;
+    }
+  }
+  
+  .term {
+    font-size: 12px;
+    justify-content: space-between;
+    &__icon {
+      height: 24px;
+    }
+  }
+}
+

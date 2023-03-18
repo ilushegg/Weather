@@ -1,56 +1,57 @@
-
-<div class="forecast__wrapper" >
-  <app-spinner *ngIf="loadingService.isLoading$ | async"></app-spinner>
-
-  <table class="forecast__table"  *ngFor="let forecast of forecastDaily || []">
-    <thead>
-      <tr>
-        <th colspan="2" class="forecast__table__date forecast__table__header">{{ forecast?.day! | date : 'MMMM d' }}</th>
-        <th class="forecast__table__header">Temperature</th>
-        <th class="forecast__table__header">Wind</th>
-        <th class="forecast__table__header">Humidity</th>
-        <th class="forecast__table__header">Feels like</th>
-        <th class="forecast__table__header">Pressure</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let forecastHourly of forecast.main || []">
-        <td>
-          <h6 class="current-time">{{ forecastHourly?.dt_txt! | date : 'h:mm a'}}</h6>
-        </td>
-        <td class="forecast__table__img">
-          <div class="forecast__table__content">
-            <img class="condition__img" *ngIf="forecast" [src]="'https://openweathermap.org/img/wn/' + forecastHourly?.icon + '@2x.png'" alt="">
-            <h4 class="condition__desc">{{forecastHourly?.description}}</h4>
-          </div>
-        </td>
-        <td>
-          <h2 class="forecast__content__temperature">{{ forecastHourly?.temperature }}</h2>
-        </td>
-        <td>
-            <h6 class="term__wind-speed">{{forecastHourly?.wind}}</h6>
-        </td>
-        <td>
-
-
-            <h6 class="term__humidity">{{forecastHourly?.humidity}}</h6>
-
-        </td>
-        <td>
-
-
-            <h6 class="term__feels-like">{{forecastHourly?.feelsLike}}</h6>
-
-        </td>
-        <td>
-
-            <h6 class="term__pressure">{{forecastHourly?.pressure}}</h6>
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  
-  
+<div class="forecast__wrapper">
+  <div class="container">
+    <table class="forecast__table" *ngFor="let forecast of forecastDaily || []">
+      <thead>
+        <tr>
+          <th colspan="2" class="forecast__table__date forecast__table__header">
+            {{ forecast?.day! | date : "MMMM d" }}
+          </th>
+          <th class="forecast__table__header">Temp</th>
+          <th class="forecast__table__header">Wind</th>
+          <th class="forecast__table__header">Humidity</th>
+          <th class="forecast__table__header">Feels like</th>
+          <th class="forecast__table__header">Pressure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let forecastHourly of forecast.main || []">
+          <td>
+            <h6 class="current-time">
+              {{ forecastHourly?.dt_txt! | date : "h:mm a" }}
+            </h6>
+          </td>
+          <td class="forecast__table__img">
+            <div class="forecast__table__content">
+              <img
+                class="condition__img"
+                *ngIf="forecast"
+                [src]="
+                  'https://openweathermap.org/img/wn/' +
+                  forecastHourly?.icon +
+                  '@2x.png'
+                "
+                alt=""
+              />
+              <h4 class="condition__desc">{{ forecastHourly?.description }}</h4>
+            </div>
+          </td>
+          <td>
+            <h2 class="term__temperature">{{ forecastHourly?.temperature }}</h2>
+          </td>
+          <td>
+            <h6 class="term__wind-speed">{{ forecastHourly?.wind }}</h6>
+          </td>
+          <td>
+            <h6 class="term__humidity">{{ forecastHourly?.humidity }}</h6>
+          </td>
+          <td>
+            <h6 class="term__feels-like">{{ forecastHourly?.feelsLike }}</h6>
+          </td>
+          <td>
+            <h6 class="term__pressure">{{ forecastHourly?.pressure }}</h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

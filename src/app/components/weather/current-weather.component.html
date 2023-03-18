@@ -1,115 +1,118 @@
 <div
   class="weather__wrapper"
-  [ngStyle]="{ 'background-image': 'url(/assets/images/weather.jpg)' }"
+  [ngStyle]="{ 'background-image': 'url(' + bgImage + ')' }"
+  *ngIf="!(loadingService.isLoading$ | async)"
 >
-  <div>
-    <div class="weather__header">
-      <h4 class="weather__header__location">{{ weatherData?.name }}</h4>
-      <h6 class="weather__header__current-time">
-        Weather for {{ weatherData?.dt! * 1000 | date : "MMMM d y h:mm a" }}
-      </h6>
-    </div>
-
-    <div class="weather__content">
-      <div class="weather__content__condition">
-        <h2 class="weather__content__temperature">
-          {{
-            weatherData?.main?.temp! > 0
-              ? "+" + weatherData?.main?.temp!
-              : weatherData?.main?.temp!
-          }}°
-        </h2>
-        <div class="condition__wrapper">
-          <img
-            class="condition__img"
-            *ngIf="weatherData"
-            [src]="
-              'https://openweathermap.org/img/wn/' +
-              weatherData?.weather?.at(0)?.icon +
-              '@2x.png'
-            "
-            alt=""
-          />
-          <h4 class="condition__desc">
-            {{ weatherData?.weather?.at(0)?.description }}
-          </h4>
-        </div>
+  <div class="container">
+    <div>
+      <div class="weather__header">
+        <h4 class="weather__header__location">{{ weatherData?.name }}</h4>
+        <h6 class="weather__header__current-time">
+          Weather for {{ weatherData?.dt! * 1000 | date : "MMMM d y h:mm a" }}
+        </h6>
       </div>
 
-      <div class="term">
-        <div class="term__wrapper term__wind-speed__wrapper">
-          <img
-            class="term__icon term__wind-speed__img"
-            src="assets/images/icons/wind.svg"
-            alt=""
-          />
-          <h6 class="term__wind-speed">
-            Wind speed: {{ weatherData?.wind?.speed }}
-          </h6>
-        </div>
-        <div class="term__wrapper term__humidity__wrapper">
-          <img
-            class="term__icon term__humidity__img"
-            src="assets/images/icons/humidity.svg"
-            alt=""
-          />
-          <h6 class="term__humidity">
-            Humidity: {{ weatherData?.main?.humidity }}
-          </h6>
-        </div>
-
-        <div class="term__wrapper term__feels-like__wrapper">
-          <img
-            class="term__icon term__feels-like__img"
-            src="assets/images/icons/temperature.svg"
-            alt=""
-          />
-          <h6 class="term__feels-like">
-            Feels like:
+      <div class="weather__content">
+        <div class="weather__content__condition">
+          <h2 class="weather__content__temperature">
             {{
-              weatherData?.main?.feels_like! > 0
-                ? "+" + weatherData?.main?.feels_like!
-                : weatherData?.main?.feels_like!
+              weatherData?.main?.temp! > 0
+                ? "+" + weatherData?.main?.temp!
+                : weatherData?.main?.temp!
             }}°
-          </h6>
+          </h2>
+          <div class="condition__wrapper">
+            <img
+              class="condition__img"
+              *ngIf="weatherData"
+              [src]="
+                'https://openweathermap.org/img/wn/' +
+                weatherData?.weather?.at(0)?.icon +
+                '@2x.png'
+              "
+              alt=""
+            />
+            <h4 class="condition__desc">
+              {{ weatherData?.weather?.at(0)?.description }}
+            </h4>
+          </div>
         </div>
-        <div class="term__wrapper term__pressure__wrapper">
-          <img
-            class="term__icon term__pressure__img"
-            src="assets/images/icons/pressure.svg"
-            alt=""
-          />
-          <h6 class="term__pressure">
-            Pressure: {{ weatherData?.main?.pressure }}
-          </h6>
-        </div>
-        <div class="term__wrapper term__sunrise__wrapper">
-          <img
-            class="term__icon term__sunrise__img"
-            src="assets/images/icons/sunrise.svg"
-            alt=""
-          />
-          <h6 class="term__sunrise">
-            Sunrise: {{ weatherData?.sys?.sunrise! * 1000 | date : "h:mm a" }}
-          </h6>
-        </div>
-        <div class="term__wrapper term__sunset__wrapper">
-          <img
-            class="term__icon term__sunset__img"
-            src="assets/images/icons/sunset.svg"
-            alt=""
-          />
-          <h6 class="term__sunset">
-            Sunset: {{ weatherData?.sys?.sunset! * 1000 | date : "h:mm a" }}
-          </h6>
+
+        <div class="term">
+          <div class="term__wrapper term__wind-speed__wrapper">
+            <img
+              class="term__icon term__wind-speed__img"
+              src="assets/images/icons/wind.svg"
+              alt=""
+            />
+            <h6 class="term__wind-speed">
+              Wind speed: {{ weatherData?.wind?.speed }}
+            </h6>
+          </div>
+          <div class="term__wrapper term__humidity__wrapper">
+            <img
+              class="term__icon term__humidity__img"
+              src="assets/images/icons/humidity.svg"
+              alt=""
+            />
+            <h6 class="term__humidity">
+              Humidity: {{ weatherData?.main?.humidity }}
+            </h6>
+          </div>
+
+          <div class="term__wrapper term__feels-like__wrapper">
+            <img
+              class="term__icon term__feels-like__img"
+              src="assets/images/icons/temperature.svg"
+              alt=""
+            />
+            <h6 class="term__feels-like">
+              Feels like:
+              {{
+                weatherData?.main?.feels_like! > 0
+                  ? "+" + weatherData?.main?.feels_like!
+                  : weatherData?.main?.feels_like!
+              }}°
+            </h6>
+          </div>
+          <div class="term__wrapper term__pressure__wrapper">
+            <img
+              class="term__icon term__pressure__img"
+              src="assets/images/icons/pressure.svg"
+              alt=""
+            />
+            <h6 class="term__pressure">
+              Pressure: {{ weatherData?.main?.pressure }}
+            </h6>
+          </div>
+          <div class="term__wrapper term__sunrise__wrapper">
+            <img
+              class="term__icon term__sunrise__img"
+              src="assets/images/icons/sunrise.svg"
+              alt=""
+            />
+            <h6 class="term__sunrise">
+              Sunrise: {{ weatherData?.sys?.sunrise! * 1000 | date : "h:mm a" }}
+            </h6>
+          </div>
+          <div class="term__wrapper term__sunset__wrapper">
+            <img
+              class="term__icon term__sunset__img"
+              src="assets/images/icons/sunset.svg"
+              alt=""
+            />
+            <h6 class="term__sunset">
+              Sunset: {{ weatherData?.sys?.sunset! * 1000 | date : "h:mm a" }}
+            </h6>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
     <div class="weather__map">
       <app-yandex-maps [lat]="coord.lat" [lon]="coord.lon"
         >656565</app-yandex-maps
       >
     </div>
+  </div>
 </div>

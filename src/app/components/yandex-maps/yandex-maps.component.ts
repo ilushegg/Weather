@@ -25,7 +25,7 @@ export class YandexMapsComponent implements OnInit {
   }
 
   onReady(event: YaReadyEvent<ymaps.Map>) {
-    console.log(event);
+
   }
 
 }

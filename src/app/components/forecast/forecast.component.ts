@@ -16,10 +16,11 @@ export class ForecastComponent implements OnInit{
   forecastData: WeatherResponse<Forecast[]> | null;
   forecastDaily: ForecastDaily[] = [];
 
-  constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService) { }
+  constructor(private weatherService: WeatherApiService, private loadingService: SpinnerService) {
+    this.loadingService.isLoading$.next(true);
+   }
 
   ngOnInit(): void {
-    this.loadingService.isLoading$.next(true);
     this.weatherService.location$.pipe(debounceTime(100), switchMap(value => this.weatherService.getForecastData())).subscribe(res => {
       this.forecastData = null;
       this.forecastData = res;

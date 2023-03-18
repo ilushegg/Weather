@@ -1,12 +1,10 @@
-@import '/src/styles.scss';
+@import "/src/styles.scss";
 
 * {
   color: #000;
 }
 
-
 .forecast {
-
   &__wrapper {
     border-radius: $border-radius;
     padding: 15px;
@@ -23,26 +21,23 @@
     border-spacing: 15px;
     margin-bottom: 20px;
     font-size: 14px;
-    min-width: 1000px;
+    width: 900px;
 
     & thead {
       border-bottom: 1px solid $dark-white;
     }
 
-    & th, td {
+    & th,
+    td {
       padding: 15px;
       text-align: center;
       white-space: nowrap;
-
     }
 
     & th {
       padding-right: 20px;
       padding-left: 20px;
-
     }
-
-
 
     & td {
       vertical-align: middle;
@@ -67,25 +62,16 @@
     &__content {
       display: flex;
       align-items: center;
-  
-      &__temperature {
-        font-size: 16px;
-        text-transform: uppercase;
-        font-weight: 600;
+
+      .condition__desc {
+        color: $light-gray;
       }
 
-        .condition__desc {
-          color: $light-gray;
-        }
-  
-        .condition__img {
-          max-width: 60px;
-        }
-      
+      .condition__img {
+        max-width: 60px;
+      }
     }
   }
-
-
 }
 
 .location {
@@ -95,4 +81,76 @@
 
 .current-time {
   color: $light-gray;
+}
+
+@media (max-width: 910px) {
+  .forecast {
+    &__table {
+      width: 750px;
+    }
+  }
+}
+@media (max-width: 800px) {
+  .forecast {
+    &__table {
+      border-spacing: 5px;
+      margin-bottom: 20px;
+      width: 650px;
+
+      & th,
+      td {
+        padding: 5px;
+      }
+
+      & th {
+        padding: 10px;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .forecast {
+    &__table {
+      margin-bottom: 10px;
+      font-size: 12px;
+      width: 550px;
+      & th {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 12px;
+      }
+
+      &__date {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .condition__desc {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .forecast {
+    &__table {
+      width: 450px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .forecast {
+    &__wrapper {
+      padding: 5px;
+    }
+
+    &__table {
+      width: 350px;
+      td {
+        white-space: normal;
+      }
+    }
+  }
+  .condition__img {
+    max-width: 40px !important;
+  }
 }

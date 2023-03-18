@@ -22,8 +22,9 @@ export class AppComponent implements OnInit{
 
   }[];
   existsInFav: boolean = false;
+  isSideMenuVisible: boolean = false;
 
-  constructor(private weatherService: WeatherApiService, private loadingService: SpinnerService, private storageService: StorageService) {
+  constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService, private storageService: StorageService) {
 
   }
   

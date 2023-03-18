@@ -1,43 +1,124 @@
 <header>
+  <p-toast></p-toast>
   <div class="container">
     <nav class="nav">
       <ul>
-        <ul>
-          <li class="nav__item "><img class="logo" src="assets/images/logo.png" alt=""></li>
-          <li class="nav__item nav__item__hover"><a routerLink="/">Today</a></li>
-          <li class="nav__item nav__item__hover"><a routerLink="/forecast">5 day forecast</a></li>
-        </ul>
-        <ul>
+        <ul class="adaptive">
           <li class="nav__item">
-            <app-search></app-search>
+            <img class="logo" src="assets/images/logo.png" alt="" />
           </li>
-          <li class="nav__item">
-            
-            <span *ngIf="!existsInFav" title="Add to favorites" class="pi pi-heart" (click)="addToFavorite()"></span>
-            <span *ngIf="existsInFav" title="Delete from favorites" class="pi pi-heart-fill" (click)="deleteFromFavorite()"></span>
+
+          <li class="nav__item nav__item__hover">
+            <a routerLink="/">Today</a>
+          </li>
+          <li class="nav__item nav__item__hover">
+            <a routerLink="/forecast">5 day forecast</a>
           </li>
         </ul>
-        <ul>
+
+        <li class="nav__item">
+          <app-search></app-search>
+          <span
+            class="pi pi-bars"
+            (click)="isSideMenuVisible = true"
+            label="Show"
+          ></span>
+        </li>
+
+        <ul class="adaptive">
           <li class="nav__item">
-            <p-dropdown [options]="cities" [(ngModel)]="selectedCity" (onChange)="selectCity()" placeholder="Select a City" optionLabel="city" [filter]="true" >
-              
+            <p-dropdown
+              [options]="cities"
+              [(ngModel)]="selectedCity"
+              (onChange)="selectCity()"
+              placeholder="Select a City"
+              optionLabel="city"
+              [filter]="true"
+            >
             </p-dropdown>
           </li>
+          <li class="nav__item">
+            <span
+              *ngIf="!existsInFav"
+              title="Add to favorites"
+              class="pi pi-heart"
+              (click)="addToFavorite()"
+            ></span>
+            <span
+              *ngIf="existsInFav"
+              title="Delete from favorites"
+              class="pi pi-heart-fill"
+              (click)="deleteFromFavorite()"
+            ></span>
+          </li>
           <li class="nav__item" (click)="useLocation()">
-           <span title="Use your location">
-             <img class="nav__item__gps" src="assets/images/icons/gps.svg" alt="">
-
-           </span>
-          </li> 
+            <span title="Use your location">
+              <img
+                class="nav__item__gps"
+                src="assets/images/icons/gps.svg"
+                alt=""
+              />
+            </span>
+          </li>
         </ul>
       </ul>
+      <p-sidebar [(visible)]="isSideMenuVisible">
+        <ul style="display: block; height: 75vh">
+          <li class="nav__item">
+            <img class="logo" src="assets/images/logo.png" alt="" />
+          </li>
+          <li class="nav__item nav__item__hover">
+            <a routerLink="/">Today</a>
+          </li>
+          <li class="nav__item nav__item__hover">
+            <a routerLink="/forecast">5 day forecast</a>
+          </li>
+          <ul>
+            <li class="nav__item">
+              <p-dropdown
+                [options]="cities"
+                [(ngModel)]="selectedCity"
+                (onChange)="selectCity()"
+                placeholder="Select a City"
+                optionLabel="city"
+                [filter]="true"
+              >
+              </p-dropdown>
+            </li>
+            <li class="nav__item">
+              <span
+                *ngIf="!existsInFav"
+                title="Add to favorites"
+                class="pi pi-heart"
+                (click)="addToFavorite()"
+              ></span>
+              <span
+                *ngIf="existsInFav"
+                title="Delete from favorites"
+                class="pi pi-heart-fill"
+                (click)="deleteFromFavorite()"
+              ></span>
+            </li>
+            <li class="nav__item" (click)="useLocation()">
+              <span title="Use your location">
+                <img
+                  class="nav__item__gps"
+                  src="assets/images/icons/gps.svg"
+                  alt=""
+                />
+              </span>
+            </li>
+          </ul>
+        </ul>
+      </p-sidebar>
     </nav>
   </div>
 </header>
 <main>
   <div class="container">
-    <router-outlet></router-outlet>
+    <app-spinner *ngIf="loadingService.isLoading$ | async"></app-spinner>
   </div>
+  <router-outlet></router-outlet>
 </main>
 <footer>
   <div class="container"></div>

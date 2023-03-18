@@ -1,9 +1,8 @@
-@import 'src/styles.scss';
+@import "src/styles.scss";
 
 header {
   height: 50px;
   background-color: #fff;
-  margin-bottom: 15px;
   @include box-shadow;
 
   .nav {
@@ -11,6 +10,10 @@ header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (max-width: 800px) {
+        justify-content: center;
+      }
     }
 
     &__item {
@@ -18,12 +21,12 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all .2s;
+      transition: all 0.2s;
 
       &__gps {
-        height: 30px;
-        transition: all .2s;
-        margin-left: 10px;
+        height: 35px;
+        transition: all 0.2s;
+
         &:hover {
           cursor: pointer;
           scale: 1.1;
@@ -31,48 +34,42 @@ header {
       }
 
       &__hover {
-
         & a {
           text-decoration: none;
           color: #000;
           height: 50px;
-      padding: 0 10px;
+          padding: 0 10px;
 
           display: flex;
           justify-content: center;
           align-items: center;
         }
-  
+
         &:hover {
-          background-color: $dark-white;
           cursor: pointer;
-  
+
           & a {
             color: $red;
           }
-  
         }
       }
     }
-
   }
-
-
 }
 
-
 :host {
-  ::ng-deep .p-dropdown-label, .p-inputtext, .p-placeholder {
+  ::ng-deep .p-dropdown-label,
+  .p-inputtext,
+  .p-placeholder {
     width: 125px;
     padding: 6px;
-
   }
 }
 
 .pi {
   color: $red;
   font-size: 20px;
-  transition: all .2s;
+  transition: all 0.2s;
   margin-left: 10px;
   &:hover {
     cursor: pointer;
@@ -80,7 +77,22 @@ header {
   }
 }
 
+.pi-bars {
+  color: #000;
+  display: none;
+
+  @media (max-width: 800px) {
+    display: block;
+  }
+}
+
 .logo {
-  max-height: 30px;
+  max-height: 25px;
   margin-right: 10px;
+}
+
+@media (max-width: 800px) {
+  .adaptive {
+    display: none !important;
+  }
 }
