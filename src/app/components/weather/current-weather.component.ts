@@ -29,16 +29,16 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit(): void {
     let time = new Date().getHours();
     if(time < 22) {
-      this.bgImage = '/assets/images/bgs/evening.jpg';
+      this.bgImage = 'assets/images/bgs/evening.jpg';
     }
     if(time < 16) {
-      this.bgImage = '/assets/images/bgs/day.jpg';
+      this.bgImage = 'assets/images/bgs/day.jpg';
     }
     if(time < 11) {
-      this.bgImage = '/assets/images/bgs/morning.jpg';
+      this.bgImage = 'assets/images/bgs/morning.jpg';
     }
     if(time < 4 || time > 23) {
-      this.bgImage = '/assets/images/bgs/night.jpg';
+      this.bgImage = 'assets/images/bgs/night.jpg';
     }
     this.weatherService.location$.pipe(debounceTime(100) ,switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
       this.weatherData = res;
