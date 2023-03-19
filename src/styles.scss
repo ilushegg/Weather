@@ -25,3 +25,11 @@ $red: #c90000;
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.ymaps-2-1-79-map ymaps, .ymaps-2-1-79-map ymaps:after, .ymaps-2-1-79-map ymaps:before {
+  border-radius: $border-radius !important;
+}
+
+.p-toast {
+  width: 300px !important;
+}
