@@ -24,23 +24,23 @@ export class CurrentWeatherComponent implements OnInit {
   constructor(private weatherService: WeatherApiService, public loadingService: SpinnerService) {
     this.loadingService.isLoading$.next(true);
 
-   }
+  }
 
   ngOnInit(): void {
     let time = new Date().getHours();
-    if(time < 22) {
+    if (time < 22) {
       this.bgImage = 'assets/images/bgs/evening.jpg';
     }
-    if(time < 16) {
+    if (time < 16) {
       this.bgImage = 'assets/images/bgs/day.jpg';
     }
-    if(time < 11) {
+    if (time < 11) {
       this.bgImage = 'assets/images/bgs/morning.jpg';
     }
-    if(time < 4 || time > 23) {
+    if (time < 4 || time > 23) {
       this.bgImage = 'assets/images/bgs/night.jpg';
     }
-    this.weatherService.location$.pipe(debounceTime(100) ,switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
+    this.weatherService.location$.pipe(debounceTime(100), switchMap(res => this.weatherService.getCurrentWeatherData())).subscribe(res => {
       this.weatherData = res;
       let formattedWeatherProps = this.weatherService.formatWeatherProperties(this.weatherData.main.temp, this.weatherData.main.feels_like, this.weatherData.wind.speed, this.weatherData.main.humidity);
       this.weatherData.main.temp = formattedWeatherProps.temp;
@@ -54,8 +54,9 @@ export class CurrentWeatherComponent implements OnInit {
       this.weatherService.currentCity$.next({
         location: this.weatherData.name,
         coord: this.weatherData.coord
-      })
-    this.loadingService.isLoading$.next(false);
+      });
+      debounceTime(500);
+      this.loadingService.isLoading$.next(false);
 
     });
     this.weatherService.coord$.subscribe(value => {
